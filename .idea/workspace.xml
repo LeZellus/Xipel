@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01727e01-4bcb-473d-80cc-1c4438d17b71" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blog/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/article_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/article_form.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +154,7 @@
       <updated>1608124322957</updated>
       <workItem from="1608124324735" duration="800000" />
       <workItem from="1608125337500" duration="813000" />
-      <workItem from="1608130283311" duration="4770000" />
+      <workItem from="1608130283311" duration="5995000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,8 @@
 {{ form_start(form, {'attr': {'class': 'row'}}) }}
 <div class="input-field col s12 m12 l12">
-    {{ form_widget(form.thumb) }}
+    {% if article.thumb is not null %}
+        <img width="300" src="{{ asset('uploads/' ~ article.thumb) }}">
+    {% endif %}
 </div>
 
 <div class="input-field col s12 m6 l6">

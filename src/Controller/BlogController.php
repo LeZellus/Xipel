@@ -77,10 +77,47 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/edit/{id}", name="blog_edit", requirements={"id"="\d+"})
      */
-    public function edit(Article $article)
+    public function edit(Article $article, Request $request)
     {
+        $currentPicture = $article->getThumb();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUpdatedAt(new \DateTime());
+
+            if ($article->getIsPublished()) {
+                $article->setPublishedAt(new \DateTime());
+            }
+
+            if ($article->getThumb() !== null && $article->getThumb() !== $currentPicture) {
+                $file = $form->get('thumb')->getData();
+                $fileName = uniqid(). '.' .$file->guessExtension();
+
+                try {
+                    $file->move (
+                        $this->getParameter('images_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    return new Response($e->getMessage());
+                }
+
+                $article->setThumb($fileName);
+            } else {
+                $article->setThumb(($currentPicture));
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            return new Response('L\'article à été modifié');
+        }
+
         return $this->render('blog/edit.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'form' => $form->createView()
         ]);
     }
 
