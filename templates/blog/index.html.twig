@@ -1,8 +1,21 @@
-{% extends 'base.html.twig' %}
+{# templates/blog/index.html.twig #}
 
-{% block title %}Hello BlogController!
-{% endblock %}
+{% extends "base.html.twig" %}
 
-{% block body %}
-	<h1>Tous les articles</h1>
+{% block title %}Accueil | {{ parent() }}{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			{% for article in articles %}
+				<div class="col s12 m4 l3">
+					<div class="article-card">
+						<img src="{{ asset('uploads/' ~ article.thumb) }}" class="responsive-img">
+						<h2><a href="{{ path('blog_show', {id: article.id}) }}">{{ article.title }}</a></h2>
+						<span class="date">{{ article.publishedAt|date('d/m/Y') }}</span>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

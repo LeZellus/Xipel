@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,29 +11,33 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class BlogController extends AbstractController
 {
-    /**
-     * @Route("/blog", name="blog")
-     */
-    public function index(): Response
+    public function index()
     {
-        return $this->render('blog/index.html.twig');
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
+            ['isPublished' => true],
+            ['publishedAt' => 'desc']
+        );
+
+        return $this->render('blog/index.html.twig', [
+            'articles' => $articles
+        ]);
     }
 
-    /**
-     * @Route("/blog/{url}", name="blog_show")
-     */
-    public function show($url)
+    public function show(Article $article)
     {
         return $this->render('blog/show.html.twig', [
-            'slug' => $url
+            'article' => $article
         ]);
     }
 
     /**
      * @Route("/blog/add", priority=10, name="blog_add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request)
     {
@@ -40,12 +45,13 @@ class BlogController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setUpdatedAt(new \DateTime());
 
             if ($article->getThumb() !== null) {
                 $file = $form->get('thumb')->getData();
-                $fileName = uniqid(). '.'.$file->guessExtension();
+                $fileName = uniqid() . '.' . $file->guessExtension();
 
                 try {
                     $file->move(
@@ -59,7 +65,7 @@ class BlogController extends AbstractController
                 $article->setThumb($fileName);
             }
 
-            if ($article->getIsPublished()){
+            if ($article->getIsPublished()) {
                 $article->setPublishedAt(new \DateTime());
             }
 
@@ -70,12 +76,14 @@ class BlogController extends AbstractController
         }
 
         return $this->render('blog/add.html.twig', [
+            'article' => $article,
             'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/blog/edit/{id}", name="blog_edit", requirements={"id"="\d+"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Article $article, Request $request)
     {
@@ -92,10 +100,10 @@ class BlogController extends AbstractController
 
             if ($article->getThumb() !== null && $article->getThumb() !== $currentPicture) {
                 $file = $form->get('thumb')->getData();
-                $fileName = uniqid(). '.' .$file->guessExtension();
+                $fileName = uniqid() . '.' . $file->guessExtension();
 
                 try {
-                    $file->move (
+                    $file->move(
                         $this->getParameter('images_directory'),
                         $fileName
                     );
@@ -123,9 +131,28 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/remove/{id}", name="blog_remove", requirements={"id"="\d+"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function remove($id)
     {
         return new Response('<h1>Supprimer l\'article' . $id . '</h1>');
+    }
+
+    /**
+     * @Route("/admin", name="admin_panel")
+     */
+    public function admin()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
+            [],
+            ['updatedAt' => 'DESC']
+        );
+
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        return $this->render('admin/index.html.twig', [
+            'articles' => $articles,
+            'users' => $users
+        ]);
     }
 }
