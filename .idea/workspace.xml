@@ -131,6 +131,7 @@
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-eventmanager" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ljxV8A5NddX8UN10yA5GOqA6ca" />
@@ -168,7 +169,7 @@
       <workItem from="1608125337500" duration="813000" />
       <workItem from="1608130283311" duration="6135000" />
       <workItem from="1609144521084" duration="16474000" />
-      <workItem from="1609318106526" duration="352000" />
+      <workItem from="1609318106526" duration="808000" />
     </task>
     <servers />
   </component>
