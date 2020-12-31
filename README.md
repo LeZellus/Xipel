@@ -34,3 +34,8 @@ Déployer sur Heroku :
 Pour voir les logs Heroku :
 
 ```heroku logs --tail```
+
+Pour voir les variables d'environnement :
+
+```heroku config```
+
