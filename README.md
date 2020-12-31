@@ -24,3 +24,13 @@ Ou si vous préférez npm :
 Ou si vous préférez npm :
 
 ``npm run watch``
+
+##Deployer avec Heroku :
+
+Déployer sur Heroku :
+
+```git push heroku master```
+
+Pour voir les logs Heroku :
+
+```heroku logs --tail```
