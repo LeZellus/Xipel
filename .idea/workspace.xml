@@ -7,6 +7,7 @@
     <list default="true" id="01727e01-4bcb-473d-80cc-1c4438d17b71" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201228104518.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +174,7 @@
       <workItem from="1608125337500" duration="813000" />
       <workItem from="1608130283311" duration="6135000" />
       <workItem from="1609144521084" duration="16474000" />
-      <workItem from="1609318106526" duration="4150000" />
+      <workItem from="1609318106526" duration="5014000" />
     </task>
     <servers />
   </component>
