@@ -19,10 +19,10 @@
 			<nav>
 				<div>
 					<div>
-						<a href="{{ path('home') }}">Symfony Blog</a>
+						<a href="{{ path('app_home') }}">Symfony Blog</a>
 						<ul>
-							<li><a href="{{ path('home') }}">Home</a></li>
-							<li><a href="{{ path('blog') }}">Blog</a></li>
+							<li><a href="{{ path('app_home') }}">Home</a></li>
+							<li><a href="{{ path('app_blog') }}">Blog</a></li>
 							{% if app.user %}
 								<li><a href="/logout">Logout</a></li>
 							{% else %}

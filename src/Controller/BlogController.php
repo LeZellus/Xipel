@@ -8,14 +8,23 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class BlogController extends AbstractController
 {
+    private $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator)
+    {
+        $this->urlGenerator = $urlGenerator;
+    }
+
     public function index()
     {
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
@@ -72,7 +81,7 @@ class BlogController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($article); //Persist Article entity
             $em->flush(); //Execute Request
-            return new Response('Le formulaire a été soumis...');
+            return new RedirectResponse($this->urlGenerator->generate('app_home'));
         }
 
         return $this->render('blog/add.html.twig', [
