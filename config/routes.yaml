@@ -39,3 +39,23 @@ app_login:
 app_logout:
   path: /logout
   controller: App\Controller\SecurityController::logout
+
+category_index:
+  path: /category
+  controller: App\Controller\CategoryController::index
+
+category_edit:
+  path: /category/edit/{id}
+  controller: App\Controller\CategoryController::edit
+  requirements:
+    id: '\d+'
+
+category_add:
+  path: /category/add/
+  controller: App\Controller\CategoryController::add
+
+category_remove:
+  path: /category/remove/{id}
+  controller: App\Controller\CategoryController::remove
+  requirements:
+    id: '\d+'
