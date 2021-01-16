@@ -1,0 +1,14 @@
+.category{
+  border-radius: 5rem;
+  text-decoration: none;
+  display: inline-block;
+  align-items: center;
+  padding: .5rem 1rem;
+
+  &-label{
+    color: $category-text;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}

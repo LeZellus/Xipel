@@ -15,9 +15,9 @@
     <section>
         <div>
             {% for category in categories %}
-                <span style="background-color: {{ category.color }}">
-                    {{ category.label }}
-                </span>
+                <a style="background-color: {{ category.color }}" href="{{ path('category_edit', {'id': category.id}) }}" class="category">
+                    <span class="category-label">{{ category.label }}</span>
+                </a>
             {% endfor %}
         </div>
     </section>
