@@ -17,11 +17,18 @@ h1{
   font-size: 6rem;
   text-shadow: $text-shadow;
 }
+h2{
+  font-size: 2.4rem;
+  text-shadow: $text-shadow;
+}
 
 .logo{
   height: calc(100% - 2rem);
 }
 
+/*
+Flex
+ */
 .f{
   display: flex;
 
@@ -30,6 +37,9 @@ h1{
   }
 }
 
+/*
+Justify-content
+ */
 .jc{
 
   &-sb{
@@ -41,11 +51,21 @@ h1{
   }
 }
 
+/*
+Align-Items
+ */
 .ai{
 
   &-c{
     align-items: center;
   }
+}
+
+/*
+Grid
+ */
+.grid{
+  display: grid;
 }
 
 

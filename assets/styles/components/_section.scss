@@ -3,4 +3,9 @@ section{
     min-height: 100vh;
     max-width: 128rem;
   }
+
+  &.articles{
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
