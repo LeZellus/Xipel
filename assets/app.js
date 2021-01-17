@@ -11,33 +11,69 @@ import './styles/app.scss';
 // any JS you import will output into a single css file (app.js in this case)
 import './scripts/app.js';
 
+//DOM loaded
+document.addEventListener("DOMContentLoaded", function () {
 
-/*
-Light-Theme function
- */
+    /*
+    Light-Theme function
+     */
+    const btn = document.querySelector(".btn-toggle");
 
-// Select the button
-const btn = document.querySelector(".btn-toggle");
+    btn.addEventListener("click", togglePageContentLightDark);
 
-btn.addEventListener("click", togglePageContentLightDark);
+    function togglePageContentLightDark() {
+        console.log("OUI")
+        let currentClass = document.body.className
+        let newClass = document.body.className == 'dark-mode' ? 'light-mode' : 'dark-mode'
+        document.body.className = newClass
 
-function togglePageContentLightDark() {
-    console.log("OUI")
-    let currentClass = document.body.className
-    let newClass = document.body.className == 'dark-mode' ? 'light-mode' : 'dark-mode'
-    document.body.className = newClass
+        document.cookie = 'theme=' + (newClass == 'light-mode' ? 'light' : 'dark')
+        console.log('Cookies are now: ' + document.cookie)
+    }
 
-    document.cookie = 'theme=' + (newClass == 'light-mode' ? 'light' : 'dark')
-    console.log('Cookies are now: ' + document.cookie)
-}
-function isDarkThemeSelected() {
-    return document.cookie.match(/theme=dark/i) != null
-}
-function setThemeFromCookie() {
-    document.body.className = isDarkThemeSelected() ? 'dark-mode' : 'light-mode'
-}
-(function() {
-    setThemeFromCookie()
-})();
+    function isDarkThemeSelected() {
+        return document.cookie.match(/theme=dark/i) != null
+    }
+
+    function setThemeFromCookie() {
+        document.body.className = isDarkThemeSelected() ? 'dark-mode' : 'light-mode'
+    }
+
+    (function () {
+        setThemeFromCookie()
+    })();
+
+    /*
+    Toggle menu function
+     */
+    const menuBtn = document.querySelector(".nav-logo");
+    const navMenu = document.querySelector(".nav-menu");
+
+    menuBtn.addEventListener("click", toggleMenu);
+
+    function toggleMenu() {
+        let boolean = false;
+        if (boolean) {
+            navMenu.classList.toggle("opened");
+            boolean = true;
+        } else {
+            navMenu.classList.toggle("opened");
+            boolean = false;
+        }
+    }
+
+    /*
+    Toggle menu function
+     */
+    const header = document.getElementById('header');
+    window.onscroll = function () {
+        if (window.scrollY >= 10) {
+            console.log("OUI")
+            header.classList.add("nav-colored");
+        } else {
+            header.classList.remove("nav-colored");
+        }
+    };
+});
 
 

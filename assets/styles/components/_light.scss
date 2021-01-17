@@ -1,9 +1,39 @@
-body.light-mode{
+body.light-mode {
   $theme-background: #eee;
-  background-color: $theme-background;
-  color: #282828;
+  $theme-color: #282828;
+  $palette-light-gray: #cccccc;
 
-  nav{
-    background-color: $theme-background;
+  background-color: $theme-background;
+  color: $theme-color;
+
+  nav {
+  }
+
+  .nav {
+    &-colored {
+      background-color: $theme-background;
+    }
+
+    &-menu {
+      background-color: $palette-light-gray;
+
+      a {
+        color: $theme-color;
+      }
+    }
+
+    &-items {
+
+      a {
+        color: $theme-color;
+      }
+    }
+  }
+
+  .wrapper{
+
+    &-styled{
+      background-color: $theme-background;
+    }
   }
 }

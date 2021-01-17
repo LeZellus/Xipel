@@ -1,7 +1,73 @@
-nav{
+header{
+  top: 0;
+  position: fixed;
+  width: 100%;
+  transition: $quick-duration;
+}
+.nav{
   height: 6rem;
   max-width: 128rem;
-  margin: auto;
   width: 100%;
   padding: 0 2rem;
+  background-color: transparent;
+
+  &-colored{
+    transition: $quick-duration;
+  }
+
+  &-logo{
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 3rem;
+    position: relative;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &-items{
+
+    a{
+      padding-left: 2rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-shadow: $text-shadow;
+    }
+  }
+
+  &-menu{
+    font-size: 1.6rem;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 1rem);
+    width: 20rem;
+    display: none;
+    border-radius: 1rem;
+    border: 1px solid $menu-border;
+    overflow: hidden;
+
+    li{
+      width: 20rem;
+    }
+
+    a{
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      box-sizing: border-box;
+      margin: 0;
+      font-weight: 700;
+      text-decoration: none;
+
+      &:hover{
+        background-color: $palette-generic-viridian;
+        transition: $quick-duration;
+      }
+    }
+
+    &.opened{
+      display: flex;
+    }
+  }
 }

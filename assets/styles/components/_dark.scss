@@ -1,9 +1,37 @@
-body.dark-mode{
+body.dark-mode {
   $theme-background: #282828;
-  background-color: $theme-background;
-  color: #eeeeee;
+  $theme-color: #eeeeee;
+  $palette-cod-gray: #1F1E1E;
 
-  nav{
-    background-color: $theme-background;
+  background-color: $theme-background;
+  color: $theme-color;
+
+  .nav {
+
+    &-colored {
+      background-color: $theme-background;
+    }
+
+    &-menu {
+      background-color: $palette-cod-gray;
+
+      a {
+        color: $theme-color;
+      }
+    }
+
+    &-items {
+
+      a {
+        color: $theme-color;
+      }
+    }
+  }
+
+  .wrapper{
+
+    &-styled{
+      background-color: $theme-background;
+    }
   }
 }

@@ -1,0 +1,9 @@
+.wrapper{
+  width: 100%;
+
+  &-resize{
+    margin: auto;
+    max-width: 128rem;
+    width: 100%;
+  }
+}
