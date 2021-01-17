@@ -1,0 +1,9 @@
+body.light-mode{
+  $theme-background: #eee;
+  background-color: $theme-background;
+  color: #282828;
+
+  nav{
+    background-color: $theme-background;
+  }
+}

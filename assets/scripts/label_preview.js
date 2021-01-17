@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let color = document.getElementById("colorCategory");
     let categoryPreview = document.getElementById("categoryPreview");
     let categoryPreviewLabel = document.getElementById("categoryPreviewLabel");
-    let categoryPreviewButton = document.getElementById("categoryPreviewButton");
 
     function previewRender() {
         let colorValue = color.value;

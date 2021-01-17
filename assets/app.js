@@ -17,10 +17,27 @@ Light-Theme function
  */
 
 // Select the button
-const btn = document.querySelector('.btn-toggle');
+const btn = document.querySelector(".btn-toggle");
 
-// Listen for a click on the button
-btn.addEventListener('click', function() {
-    // Then toggle (add/remove) the .dark-theme class to the body
-    document.body.classList.toggle('light-theme');
-})
+btn.addEventListener("click", togglePageContentLightDark);
+
+function togglePageContentLightDark() {
+    console.log("OUI")
+    let currentClass = document.body.className
+    let newClass = document.body.className == 'dark-mode' ? 'light-mode' : 'dark-mode'
+    document.body.className = newClass
+
+    document.cookie = 'theme=' + (newClass == 'light-mode' ? 'light' : 'dark')
+    console.log('Cookies are now: ' + document.cookie)
+}
+function isDarkThemeSelected() {
+    return document.cookie.match(/theme=dark/i) != null
+}
+function setThemeFromCookie() {
+    document.body.className = isDarkThemeSelected() ? 'dark-mode' : 'light-mode'
+}
+(function() {
+    setThemeFromCookie()
+})();
+
+

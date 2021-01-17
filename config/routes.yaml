@@ -1,6 +1,6 @@
 app_home:
   path: /
-  controller: App\Controller\BlogController::index
+  controller: App\Controller\HomeController::index
 
 article_add:
   path: /add

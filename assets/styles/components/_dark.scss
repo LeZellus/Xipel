@@ -1,0 +1,9 @@
+body.dark-mode{
+  $theme-background: #282828;
+  background-color: $theme-background;
+  color: #eeeeee;
+
+  nav{
+    background-color: $theme-background;
+  }
+}
