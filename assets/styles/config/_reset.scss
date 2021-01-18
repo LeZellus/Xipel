@@ -84,7 +84,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font-family: $primary-font;
   vertical-align: baseline;
 }
@@ -132,4 +131,8 @@ q::after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+a{
+  text-decoration: none;
 }

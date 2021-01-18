@@ -1,0 +1,11 @@
+.wrapper{
+  width: 100%;
+
+  &-resize{
+    margin: auto;
+    max-width: 128rem;
+    width: 100%;
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
+}

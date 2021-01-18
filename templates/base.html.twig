@@ -1,45 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-			<link rel="preconnect" href="https://fonts.gstatic.com">
-			<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
-		{% endblock %}
-	</head>
-	<body>
-		<header>
-			<nav>
-				<div>
-					<div>
-						<a href="{{ path('app_home') }}">Symfony Blog</a>
-						<ul>
-							<li><a href="{{ path('app_home') }}">Home</a></li>
-							<li><a href="{{ path('app_blog') }}">Blog</a></li>
-							{% if app.user %}
-								<li><a href="/logout">Logout</a></li>
-							{% else %}
-								<li><a href="/login">Login</a></li>
-							{% endif %}
-						</ul>
-					</div>
-				</div>
-			</nav>
-			<button class="btn-toggle">Toggle Dark Mode</button>
-		</header>
+    <title>
+        {% block title %}Welcome!
+        {% endblock %}
+    </title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    {% endblock %}
+</head>
+<body>
+<header class="f jc-c" id="header">
+    <nav class="f ai-c jc-sb nav">
+        <section class="nav-logo f ai-c">
+            <img src="{{ asset('uploads/website/LeZellus.gif') }}" alt="Logo PixelArt" class="logo">
+            <i class='bx bx-chevron-down'></i>
+            <ul class="nav-menu f f-w">
+                <li>
+                    <a href="{{ path('app_home') }}" class="f ai-c">🏠 Accueil</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_home') }}" class="f ai-c">⚙️ Admin</a>
+                </li>
+                <li>
+                    <a href="#" class="btn-toggle f ai-c">🌓 Dark / Light</a>
+                </li>
+                {% if app.user %}
+                    <li>
+                        <a href="{{ path('app_logout') }}" class="f ai-c">🚪 Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('app_login') }}" class="f ai-c">🧑🏻 Connexion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_register') }}" class="f ai-c">📝 Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </section>
+        <ul class="f nav-items">
+            {% if app.user %}
+                <li><a href="{{ path('app_logout') }}">🚪 Déconnexion</a></li>
+            {% else %}
+                <li><a href="{{ path('app_login') }}">🧑🏻 Connexion</a></li>
+                <li><a href="{{ path('app_register') }}">📝 Inscription</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
 
-		{% block body %}{% endblock %}
-		{% block javascripts %}{% endblock %}
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
 
-		{% block scripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</body>
+{% block scripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>

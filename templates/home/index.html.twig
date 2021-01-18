@@ -5,5 +5,24 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Je suis la page home !</h1>
+    <main>
+        <section class="wrapper">
+            <section class="wrapper-resize entrance">
+                <h1>XIPEL Blog</h1>
+                <p>L’aventure de A à Z d’un jeu</p>
+            </section>
+        </section>
+        <section class="wrapper">
+            <section class="wrapper-resize articles grid">
+                {% for article in articles %}
+                    <article class="card">
+                        <img src="{{ asset('uploads/' ~ article.thumb) }}" class="card-thumb"
+                             alt="image de l'article">
+                        <h2><a href="{{ path('article_show', {id: article.id}) }}" class="card-title">{{ article.title }}</a></h2>
+                        <span class="date">{{ article.publishedAt|date('d/m/Y') }}</span>
+                    </article>
+                {% endfor %}
+            </section>
+        </section>
+    </main>
 {% endblock %}
