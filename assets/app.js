@@ -74,6 +74,18 @@ document.addEventListener("DOMContentLoaded", function () {
             header.classList.remove("nav-colored");
         }
     };
+
+    /*
+    Toggle notifications
+     */
+    const closeButton = document.querySelector(".close");
+    const notification = document.querySelector(".notification");
+
+    closeButton.addEventListener("click", toggleNotifications);
+
+    function toggleNotifications() {
+        notification.style.display = "none";
+    }
 });
 
 

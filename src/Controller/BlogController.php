@@ -5,27 +5,20 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\User;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class BlogController extends AbstractController
 {
-    private $urlGenerator;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator)
-    {
-        $this->urlGenerator = $urlGenerator;
-    }
-
-    public function index()
+    public function index(): Response
     {
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
             ['isPublished' => true],
@@ -47,8 +40,11 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/add", priority=10, name="blog_add")
      * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param NotifierInterface $notifier
+     * @return Response
      */
-    public function add(Request $request)
+    public function add(Request $request, NotifierInterface $notifier): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -81,7 +77,10 @@ class BlogController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($article); //Persist Article entity
             $em->flush(); //Execute Request
-            return new RedirectResponse($this->urlGenerator->generate('app_home'));
+
+            $notifier->send(new Notification('L\'article à été créé', ['browser']));
+
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('blog/add.html.twig', [
@@ -93,8 +92,12 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/edit/{id}", name="blog_edit", requirements={"id"="\d+"})
      * @IsGranted("ROLE_ADMIN")
+     * @param Article $article
+     * @param Request $request
+     * @param NotifierInterface $notifier
+     * @return Response
      */
-    public function edit(Article $article, Request $request)
+    public function edit(Article $article, Request $request, NotifierInterface $notifier): Response
     {
         $currentPicture = $article->getThumb();
         $form = $this->createForm(ArticleType::class, $article);
@@ -129,7 +132,8 @@ class BlogController extends AbstractController
             $em->persist($article);
             $em->flush();
 
-            return new Response('L\'article à été modifié');
+            $notifier->send(new Notification('L\'article à été modifié', ['browser']));
+            return $this->redirectToRoute('article_edit', ['id' => $article->getId()]);
         }
 
         return $this->render('blog/edit.html.twig', [
@@ -139,18 +143,28 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/remove/{id}", name="blog_remove", requirements={"id"="\d+"})
      * @IsGranted("ROLE_ADMIN")
+     * @param NotifierInterface $notifier
+     * @param Article $article
+     * @return Response
      */
-    public function remove($id)
+    public function remove(NotifierInterface $notifier, Article $article): Response
     {
-        return new Response('<h1>Supprimer l\'article' . $id . '</h1>');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+
+        $notifier->send(new Notification('L\'article à été supprimé', ['browser']));
+        return $this->redirectToRoute('app_admin');
     }
 
     /**
-     * @Route("/admin", name="admin_panel")
+     * @IsGranted("ROLE_ADMIN")
+     * @return Response
      */
-    public function admin()
+    public function admin(): Response
     {
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
             [],

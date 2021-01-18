@@ -16,6 +16,12 @@
     {% endblock %}
 </head>
 <body>
+{% for message in app.flashes('notification') %}
+    <div class="notification f ai-c jc-c">
+        {{ message }}
+        <i class='bx bx-x close'></i>
+    </div>
+{% endfor %}
 <header class="f jc-c" id="header">
     <nav class="f ai-c jc-sb nav">
         <section class="nav-logo f ai-c">

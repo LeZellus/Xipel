@@ -1,7 +1,33 @@
+##############################################
+#App route
+##############################################
 app_home:
   path: /
   controller: App\Controller\HomeController::index
 
+app_blog:
+  path: /blog
+  controller: App\Controller\BlogController::index
+
+app_register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+app_login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+app_logout:
+  path: /logout
+  controller: App\Controller\SecurityController::logout
+
+app_admin:
+  path: /admin
+  controller: App\Controller\BlogController::admin
+
+##############################################
+#Article route
+##############################################
 article_add:
   path: /add
   controller: App\Controller\BlogController::add
@@ -24,22 +50,9 @@ article_remove:
   requirements:
     id: '\d+'
 
-app_blog:
-  path: /blog
-  controller: App\Controller\BlogController::index
-
-app_register:
-  path: /register
-  controller: App\Controller\RegistrationController::register
-
-app_login:
-  path: /login
-  controller: App\Controller\SecurityController::login
-
-app_logout:
-  path: /logout
-  controller: App\Controller\SecurityController::logout
-
+##############################################
+#Category route
+##############################################
 category_index:
   path: /category
   controller: App\Controller\CategoryController::index

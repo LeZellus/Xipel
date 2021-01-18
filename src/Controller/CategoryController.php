@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -30,7 +32,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    public function add(Request $request)
+    public function add(Request $request, NotifierInterface $notifier)
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $category = new Category();
@@ -43,7 +45,9 @@ class CategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category); //Persist category entity
             $em->flush(); //Execute Request
-            return $this->redirectToRoute('app_home');
+            $notifier->send(new Notification('La catégorie à été créée', ['browser']));
+
+            return $this->redirectToRoute('category_index');
         }
 
         return $this->render('category/add.html.twig', [
@@ -53,7 +57,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    public function edit(Category $category, Request $request)
+    public function edit(Category $category, Request $request, NotifierInterface $notifier)
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $currentLabel = $category->getLabel();
@@ -65,6 +69,7 @@ class CategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+            $notifier->send(new Notification('La catégorie à été éditée', ['browser']));
 
             return $this->redirectToRoute('category_index');
         }
@@ -76,11 +81,13 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    public function remove(Category $category)
+    public function remove(Category $category, NotifierInterface $notifier): Response
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
         $em->flush();
+
+        $notifier->send(new Notification('La catégorie à été supprimée', ['browser']));
 
         return $this->redirectToRoute('category_index');
     }
