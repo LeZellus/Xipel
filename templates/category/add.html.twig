@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+    | Ajouter une catégorie
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <h4>Ajout d'une catégorie</h4>
+            </div>
+        </div>
+        {% include "includes/category_form.html.twig" %}
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('categories') }}
+    {% endblock %}
+{% endblock %}

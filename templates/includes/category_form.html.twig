@@ -1,0 +1,24 @@
+{{ form_start(form, {'attr': {'class': 'row'}}) }}
+
+<div class="input-field col s12 m6 l6">
+    {{ form_widget(form.label, {'id': 'labelCategory','attr': {'placeholder': 'Label de la catégorie'}}) }}
+    {{ form_label(form.label, "Catégories") }}
+</div>
+
+<div class="input-field col s12 m12 l12">
+    {{ form_widget(form.color, {'id': 'colorCategory','attr': {'placeholder': 'Couleur du background', 'name': 'colorCategory'}}) }}
+    {{ form_label(form.color, "Couleur") }}
+</div>
+
+<div class="input-field col s12 m12 l12">
+    <input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+</div>
+
+{{ form_end(form) }}
+
+<section>
+    <span id="categoryPreview" class="category">
+        <span id="categoryPreviewLabel" class="category-label"></span>
+    </span>
+    <input name="" type="button" id="categoryPreviewButton" value="preview">
+</section>
