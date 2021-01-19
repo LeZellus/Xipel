@@ -1,0 +1,13 @@
+easy_admin:
+    site_name: Xipel Blog
+    design:
+        brand_color: '#181818'
+
+        # the value of this option can be any valid CSS color
+    entities:
+        # List the entity class name you want to manage
+        - App\Entity\Category
+        - App\Entity\User
+        - App\Entity\Comment
+        - App\Entity\Article
+

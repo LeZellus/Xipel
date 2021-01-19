@@ -34,11 +34,15 @@ class Category
      */
     private $color;
 
+    public function __toString(): string
+    {
+        return (string) $this->getLabel();
+    }
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {

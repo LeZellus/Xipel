@@ -55,6 +55,11 @@ class Article
      */
     private $categories;
 
+    public function __toString(): string
+    {
+        return $this->title.' '.$this->content;
+    }
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();

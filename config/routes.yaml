@@ -21,10 +21,6 @@ app_logout:
   path: /logout
   controller: App\Controller\SecurityController::logout
 
-app_admin:
-  path: /admin
-  controller: App\Controller\BlogController::admin
-
 ##############################################
 #Article route
 ##############################################

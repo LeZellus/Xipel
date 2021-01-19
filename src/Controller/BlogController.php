@@ -141,41 +141,4 @@ class BlogController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-    /**
-     * @IsGranted("ROLE_ADMIN")
-     * @param NotifierInterface $notifier
-     * @param Article $article
-     * @return Response
-     */
-    public function remove(NotifierInterface $notifier, Article $article): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($article);
-        $em->flush();
-
-        $notifier->send(new Notification('L\'article à été supprimé', ['browser']));
-        return $this->redirectToRoute('app_admin');
-    }
-
-    /**
-     * @IsGranted("ROLE_ADMIN")
-     * @return Response
-     */
-    public function admin(): Response
-    {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
-            [],
-            ['updatedAt' => 'DESC']
-        );
-
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-
-        return $this->render('admin/index.html.twig', [
-            'articles' => $articles,
-            'users' => $users
-        ]);
-    }
 }
