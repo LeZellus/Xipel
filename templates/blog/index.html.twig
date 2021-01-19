@@ -8,7 +8,7 @@
 			{% for article in articles %}
 				<div class="col s12 m4 l3">
 					<div class="article-card">
-						<img src="{{ asset('uploads/' ~ article.thumb) }}" class="responsive-img" alt="image de l'article">
+						<img src="{{ article.thumb }}" class="responsive-img" alt="image de l'article">
 						<h2><a href="{{ path('article_show', {id: article.id}) }}">{{ article.title }}</a></h2>
 						<span class="date">{{ article.publishedAt|date('d/m/Y') }}</span>
 					</div>

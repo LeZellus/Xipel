@@ -56,7 +56,7 @@ class BlogController extends AbstractController
 
             if ($article->getThumb() !== null) {
                 $file = $form->get('thumb')->getData();
-                $fileName = uniqid() . '.' . $file->guessExtension();
+                $fileName = "uploads/". uniqid() . '.' . $file->guessExtension();
 
                 try {
                     $file->move(
