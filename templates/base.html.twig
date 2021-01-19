@@ -37,6 +37,9 @@
                 <li>
                     <a href="#" class="btn-toggle f ai-c">🌓 Dark / Light</a>
                 </li>
+                <li>
+                    <a href="{{ path('app_contact') }}" class="f ai-c">💬 Contact</a>
+                </li>
                 {% if app.user %}
                     <li>
                         <a href="{{ path('app_logout') }}" class="f ai-c">🚪 Déconnexion</a>
@@ -62,9 +65,11 @@
     </nav>
 </header>
 
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+<main>
+    {% block body %}{% endblock %}
+</main>
 
+{% block javascripts %}{% endblock %}
 {% block scripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}

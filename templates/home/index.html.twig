@@ -16,7 +16,7 @@
             <section class="wrapper-resize articles grid">
                 {% for article in articles %}
                     <article class="card">
-                        <img src="{{ asset('uploads/' ~ article.thumb) }}" class="card-thumb"
+                        <img src="{{ article.thumb }}" class="card-thumb"
                              alt="image de l'article">
                         <h2><a href="{{ path('article_show', {id: article.id}) }}" class="card-title">{{ article.title }}</a></h2>
                         <span class="date">{{ article.publishedAt|date('d/m/Y') }}</span>
