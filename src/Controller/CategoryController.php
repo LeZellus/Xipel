@@ -12,18 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CategoryController extends AbstractController
 {
-    private $urlGenerator;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator)
-    {
-        $this->urlGenerator = $urlGenerator;
-    }
-
-    public function index()
+    public function index(): Response
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
 
@@ -32,7 +24,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    public function add(Request $request, NotifierInterface $notifier)
+    public function add(Request $request)
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $category = new Category();
@@ -46,7 +38,7 @@ class CategoryController extends AbstractController
             $em->persist($category); //Persist category entity
             $em->flush(); //Execute Request
 
-            $notifier->send(new Notification('La catégorie à été créée', ['browser']));
+            $this->addFlash('success', 'La catégorie à été créée');
 
             return $this->redirectToRoute('category_index');
         }
@@ -58,7 +50,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    public function edit(Category $category, Request $request, NotifierInterface $notifier)
+    public function edit(Category $category, Request $request)
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $currentLabel = $category->getLabel();
@@ -71,7 +63,7 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            $notifier->send(new Notification('La catégorie à été éditée', ['browser']));
+            $this->addFlash('success', 'La catégorie à été éditée');
 
             return $this->redirectToRoute('category_index');
         }
@@ -89,7 +81,7 @@ class CategoryController extends AbstractController
         $em->remove($category);
         $em->flush();
 
-        $notifier->send(new Notification('La catégorie à été supprimée', ['browser']));
+        $this->addFlash('success', 'La catégorie à été supprimée');
 
         return $this->redirectToRoute('category_index');
     }

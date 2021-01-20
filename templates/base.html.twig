@@ -16,7 +16,7 @@
     {% endblock %}
 </head>
 <body>
-{% for message in app.flashes('notification') %}
+{% for message in app.flashes('success') %}
     <div class="notification f ai-c jc-c">
         {{ message }}
         <i class='bx bx-x close'></i>

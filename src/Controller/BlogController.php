@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +43,7 @@ class BlogController extends AbstractController
      * @param NotifierInterface $notifier
      * @return Response
      */
-    public function add(Request $request, NotifierInterface $notifier): Response
+    public function add(Request $request): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -78,7 +77,7 @@ class BlogController extends AbstractController
             $em->persist($article); //Persist Article entity
             $em->flush(); //Execute Request
 
-            $notifier->send(new Notification('L\'article à été créé', ['browser']));
+            $this->addFlash('success', 'L\'article à été créé');
 
             return $this->redirectToRoute('app_home');
         }
@@ -97,7 +96,7 @@ class BlogController extends AbstractController
      * @param NotifierInterface $notifier
      * @return Response
      */
-    public function edit(Article $article, Request $request, NotifierInterface $notifier): Response
+    public function edit(Article $article, Request $request): Response
     {
         $currentPicture = $article->getThumb();
         $form = $this->createForm(ArticleType::class, $article);
@@ -120,6 +119,7 @@ class BlogController extends AbstractController
                         $fileName
                     );
                 } catch (FileException $e) {
+                    $this->addFlash('error', 'Une erreur s\'est produite');
                     return new Response($e->getMessage());
                 }
 
@@ -132,7 +132,7 @@ class BlogController extends AbstractController
             $em->persist($article);
             $em->flush();
 
-            $notifier->send(new Notification('L\'article à été modifié', ['browser']));
+            $this->addFlash('error', 'L\'article à été modifié');
             return $this->redirectToRoute('article_edit', ['id' => $article->getId()]);
         }
 
@@ -140,5 +140,23 @@ class BlogController extends AbstractController
             'article' => $article,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @param NotifierInterface $notifier
+     * @param Article $article
+     * @return Response
+     */
+    public function remove(NotifierInterface $notifier, Article $article): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+
+        $this->addFlash('success', 'L\'article à été supprimé');
+        return $this->redirectToRoute('app_admin');
     }
 }

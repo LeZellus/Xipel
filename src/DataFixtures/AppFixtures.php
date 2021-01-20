@@ -17,7 +17,7 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         $roles = [];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             // Article fake data
             $article = new Article();
             $article->setThumb("https://i.pinimg.com/originals/fe/78/bb/fe78bbb25f35d56b502327fb6d43b309.png");
