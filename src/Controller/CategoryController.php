@@ -37,6 +37,7 @@ class CategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category); //Persist category entity
             $em->flush(); //Execute Request
+
             $this->addFlash('success', 'La catégorie à été créée');
 
             return $this->redirectToRoute('category_index');
@@ -61,6 +62,7 @@ class CategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+
             $this->addFlash('success', 'La catégorie à été éditée');
 
             return $this->redirectToRoute('category_index');
