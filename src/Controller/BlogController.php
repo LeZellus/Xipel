@@ -78,7 +78,7 @@ class BlogController extends AbstractController
             $em->persist($article); //Persist Article entity
             $em->flush(); //Execute Request
 
-            $notifier->send(new Notification('L\'article à été créé', ['browser']));
+            $this->addFlash('success', 'L\'article à été créé');
 
             return $this->redirectToRoute('app_home');
         }
@@ -120,6 +120,7 @@ class BlogController extends AbstractController
                         $fileName
                     );
                 } catch (FileException $e) {
+                    $this->addFlash('error', 'Une erreur s\'est produite');
                     return new Response($e->getMessage());
                 }
 
@@ -132,7 +133,7 @@ class BlogController extends AbstractController
             $em->persist($article);
             $em->flush();
 
-            $notifier->send(new Notification('L\'article à été modifié', ['browser']));
+            $this->addFlash('error', 'L\'article à été modifié');
             return $this->redirectToRoute('article_edit', ['id' => $article->getId()]);
         }
 
@@ -156,26 +157,7 @@ class BlogController extends AbstractController
         $em->remove($article);
         $em->flush();
 
-        $notifier->send(new Notification('L\'article à été supprimé', ['browser']));
+        $this->addFlash('success', 'L\'article à été supprimé');
         return $this->redirectToRoute('app_admin');
-    }
-
-    /**
-     * @IsGranted("ROLE_ADMIN")
-     * @return Response
-     */
-    public function admin(): Response
-    {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
-            [],
-            ['updatedAt' => 'DESC']
-        );
-
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-
-        return $this->render('admin/index.html.twig', [
-            'articles' => $articles,
-            'users' => $users
-        ]);
     }
 }
