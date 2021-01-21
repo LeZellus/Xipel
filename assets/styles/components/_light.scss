@@ -36,4 +36,19 @@ body.light-mode {
       background-color: $theme-background;
     }
   }
+
+  input{
+
+    &[type="text"],
+    &[type="email"],
+    &[type="submit"],
+    &[type="password"]{
+      background-color: $theme-background;
+      color: $theme-color;
+    }
+  }
+
+  a{
+    color: $theme-color
+  }
 }

@@ -1,0 +1,16 @@
+{# templates/security/login.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Déconnexion{% endblock %}
+
+{% block body %}
+    <section class="wrapper">
+        <div class="wrapper-resize grid grid-gap-40 wrapper-logout">
+            <h1>Déconnexion</h1>
+            <p class="text-center">Tu es actuellement connecté en tant que {{ app.user.username }},
+                <a href="{{ path('app_logout') }}">Déconnecte-toi</a></p>
+            <a href="{{ app.request.headers.get('referer') }}" class="btn">Retour</a>
+        </div>
+    </section>
+{% endblock %}

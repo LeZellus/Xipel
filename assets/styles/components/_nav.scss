@@ -58,11 +58,11 @@ header{
       padding: 1rem;
       box-sizing: border-box;
       margin: 0;
-      font-weight: 700;
+      font-weight: 300;
       text-decoration: none;
 
       &:hover{
-        background-color: $palette-generic-viridian;
+        background-color: $palette-turquoise;
         transition: $quick-duration;
       }
     }

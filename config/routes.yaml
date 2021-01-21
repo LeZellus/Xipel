@@ -25,6 +25,10 @@ app_contact:
   path: /contact
   controller: App\Controller\ContactController::index
 
+app_verify_email:
+  path: /verify/email
+  controller: App\Controller\RegistrationController::verifyUserEmail
+
 ##############################################
 #Article route
 ##############################################
@@ -70,5 +74,11 @@ category_add:
 category_remove:
   path: /category/remove/{id}
   controller: App\Controller\CategoryController::remove
+  requirements:
+    id: '\d+'
+
+category_show:
+  path: /category/{id}
+  controller: App\Controller\CategoryController::show
   requirements:
     id: '\d+'

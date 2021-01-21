@@ -1,0 +1,58 @@
+.form{
+  display: grid;
+  grid-gap: 2rem;
+
+  &-group{
+    display: grid;
+    grid-gap: 1rem;
+  }
+
+  &-label{
+    text-transform: uppercase;
+    font-weight: 800;
+    text-shadow: $text-shadow;
+  }
+
+  &-small{
+    max-width: 32rem;
+    width: 100%;
+    margin: auto;
+  }
+}
+
+input{
+  transition: $quick-duration;
+
+  &[type="text"],
+  &[type="email"],
+  &[type="password"]{
+    padding: 2rem;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    border: 1px solid $input-border;
+    font-family: $primary-font;
+  }
+
+  &[type="button"]{
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $input-border-focus;
+    transition: $quick-duration;
+  }
+}
+
+.btn{
+  border: 1px solid $input-border;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-family: $primary-font;
+
+  &:hover{
+    cursor: pointer;
+    border-color: $input-border-focus;
+    transition: $quick-duration;
+  }
+}
