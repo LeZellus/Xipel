@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -86,12 +87,10 @@ class CategoryController extends AbstractController
         return $this->redirectToRoute('category_index');
     }
 
-    public function show()
+    public function show(Category $category)
     {
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
-
         return $this->render('category/show.html.twig', [
-            'categories' => $categories,
+            'category' => $category,
         ]);
     }
 }

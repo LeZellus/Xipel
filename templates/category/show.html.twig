@@ -3,7 +3,10 @@
 {% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
-    {% for category in categories %}
-        <h1>{{ category.label }}</h1>
+    {% for article in category.articles %}
+        <article>
+            <h1>{{ article.title }}</h1><br>
+        </article>
     {% endfor %}
+    <h1>{{ category.label }}</h1>
 {% endblock %}
