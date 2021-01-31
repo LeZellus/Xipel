@@ -20,11 +20,28 @@
   }
 }
 
+select{
+  padding: 2rem;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid $input-border;
+  font-family: $primary-font;
+  width: 33.33%;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: $input-border-focus;
+    transition: $quick-duration;
+  }
+}
+
 input{
   transition: $quick-duration;
 
   &[type="text"],
   &[type="email"],
+  &[type="number"],
   &[type="password"]{
     padding: 2rem;
     border-radius: 1rem;

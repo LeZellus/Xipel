@@ -40,6 +40,7 @@ body.dark-mode {
     &[type="text"],
     &[type="email"],
     &[type="submit"],
+    &[type="number"],
     &[type="password"]{
       background-color: $theme-background;
       color: $theme-color;

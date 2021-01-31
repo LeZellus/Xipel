@@ -25,6 +25,36 @@
             </div>
 
             <div class="form-group">
+                {{ form_label(registrationForm.cellnumber, "Numéro de mobile", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(registrationForm.cellnumber, {'attr': {'placeholder': '06 68 09 99 00'}}) }}
+                <span class="error">{{ form_errors(registrationForm.cellnumber) }}</span>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.phonenumber, "Numméro de téléphone", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(registrationForm.phonenumber, {'attr': {'placeholder': '05 65 72 00 00'}}) }}
+                <span class="error">{{ form_errors(registrationForm.phonenumber) }}</span>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.firstname, "Prénom", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(registrationForm.firstname, {'attr': {'placeholder': 'Jack'}}) }}
+                <span class="error">{{ form_errors(registrationForm.firstname) }}</span>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.lastname, "Nom", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(registrationForm.lastname, {'attr': {'placeholder': 'Pot'}}) }}
+                <span class="error">{{ form_errors(registrationForm.lastname) }}</span>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.birthday, "Date de naissance", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(registrationForm.birthday) }}
+                <span class="error">{{ form_errors(registrationForm.birthday) }}</span>
+            </div>
+
+            <div class="form-group">
                 {{ form_label(registrationForm.plainPassword, "Mot de passe", {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}}) }}
                 <span class="error">{{ form_errors(registrationForm.plainPassword) }}</span>
