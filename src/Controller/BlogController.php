@@ -93,7 +93,6 @@ class BlogController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @param Article $article
      * @param Request $request
-     * @param NotifierInterface $notifier
      * @return Response
      */
     public function edit(Article $article, Request $request): Response

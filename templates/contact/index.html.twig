@@ -3,7 +3,9 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
-<main>
-    {% include "includes/contact_form.html.twig" %}
-</main>
+    <section class="wrapper">
+        <div class="wrapper-resize grid grid-gap-40">
+            {% include "includes/contact_form.html.twig" %}
+        </div>
+    </section>
 {% endblock %}

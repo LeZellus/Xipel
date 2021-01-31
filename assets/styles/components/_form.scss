@@ -18,6 +18,12 @@
     width: 100%;
     margin: auto;
   }
+
+  &-medium{
+    max-width: 50rem;
+    width: 100%;
+    margin: auto;
+  }
 }
 
 select{
@@ -28,6 +34,20 @@ select{
   font-family: $primary-font;
   width: 33.33%;
   -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: $input-border-focus;
+    transition: $quick-duration;
+  }
+}
+
+textarea{
+  padding: 2rem;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid $input-border;
+  font-family: $primary-font;
 
   &:focus {
     outline: none;
@@ -48,9 +68,6 @@ input{
     font-size: 1.6rem;
     border: 1px solid $input-border;
     font-family: $primary-font;
-  }
-
-  &[type="button"]{
   }
 
   &:focus {

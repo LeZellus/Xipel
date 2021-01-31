@@ -7,7 +7,6 @@
 
 // any CSS you import will output into a single css file (app.scss in this case)
 import './styles/app.scss';
-import Siema from 'siema';
 
 // any JS you import will output into a single css file (app.js in this case)
 import './scripts/app.js';
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("click", togglePageContentLightDark);
 
     function togglePageContentLightDark() {
-        let currentClass = document.body.className
         let newClass = document.body.className == 'dark-mode' ? 'light-mode' : 'dark-mode'
         document.body.className = newClass
 
@@ -89,34 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function toggleNotifications() {
         notification.style.display = "none";
     }
-
-    let mySiema = Siema({
-        selector: '.siema',
-        duration: 200,
-        easing: 'ease-out',
-        perPage: 1,
-        startIndex: 0,
-        draggable: true,
-        multipleDrag: true,
-        threshold: 20,
-        loop: true,
-        onInit: () => {},
-        onChange: () => {},
-    });
-
-    Siema.prototype.addPagination = function() {
-        for (let i = 0; i < this.innerElements.length; i++) {
-            const btn = document.createElement('button');
-            btn.textContent = i;
-            btn.addEventListener('click', () => this.goTo(i));
-            this.selector.appendChild(btn);
-        }
-    }
-
-    // Trigger pagination creator
-    mySiema.addPagination();
-
-
 });
 
 

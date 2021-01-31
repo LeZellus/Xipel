@@ -1,18 +1,22 @@
-{{ form_start(form, {'attr': {'class': 'grid grid-gap-20'}}) }}
+{{ form_start(form, {'attr': {'class': 'form grid grid-gap-20 form-medium'}}) }}
+<h1>Contact</h1>
 <div class="form-control grid grid-gap-10">
-    {{ form_label(form.fullName, 'Nom', {'label_attr': {'class': 'form-control-label'}}) }}
-    {{ form_widget(form.fullName, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.fullName, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.fullName, {'attr': {'placeholder': 'Jack Pot'}}) }}
+    <span class="error">{{ form_errors(form.email) }}</span>
 </div>
 <div class="form-control grid grid-gap-10">
-    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-control-label'}}) }}
-    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.email, {'attr': {'placeholder': 'jackpot@exemple.com'}}) }}
+    <span class="error">{{ form_errors(form.email) }}</span>
 </div>
 <div class="form-control grid grid-gap-10">
-    {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-control-label'}}) }}
-    {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.message, {'attr': {'placeholder': 'Je vous contacte pour ...'}}) }}
+    <span class="error">{{ form_errors(form.email) }}</span>
 </div>
 
 <div class="form-control">
-    <input type="submit" value="Send" class="btn btn-primary py-3 px-5">
+    <input type="submit" value="Envoyer" class="btn">
 </div>
 {{ form_end(form) }}
