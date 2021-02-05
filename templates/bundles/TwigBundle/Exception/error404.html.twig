@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oups !{% endblock %}
+
+{% block body %}
+    <section class="wrapper">
+        <div class="wrapper-resize wrapper-small grid grid-gap-20">
+            <h1>Erreur 404</h1>
+            <p class="text-center">La page demandée n'a pu être trouvée. Vérifiez si l'URL est mal orthographiée ou retournez à l'accueil</p>
+            <div class="btn-box jc-c">
+                <a href="{{ path('app_home') }}" class="btn">Accueil</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
