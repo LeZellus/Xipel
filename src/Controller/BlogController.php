@@ -131,7 +131,7 @@ class BlogController extends AbstractController
             $em->persist($article);
             $em->flush();
 
-            $this->addFlash('error', 'L\'article à été modifié');
+            $this->addFlash('success', 'L\'article à été modifié');
             return $this->redirectToRoute('article_edit', ['id' => $article->getId()]);
         }
 

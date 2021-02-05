@@ -12,16 +12,43 @@
         {{ encore_entry_link_tags('app') }}
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('fonts/uicons-regular-rounded/css/uicons-regular-rounded.css') }}">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     {% endblock %}
 </head>
 <body>
 {% for message in app.flashes('success') %}
-    <div class="notification f ai-c jc-c">
+    <div class="notification success f ai-c jc-c">
+        <div class="f ai-c notification-message">
+            ✅
+            <span>Bravo !</span>
+        </div>
         {{ message }}
-        <i class='bx bx-x close'></i>
+        <i class="fi fi-rr-cross-small"></i>
     </div>
 {% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="notification error f ai-c jc-c">
+        <div class="f ai-c notification-message">
+            ❌
+            <span>Erreur ! </span>
+        </div>
+        {{ message }}
+        <i class="fi fi-rr-cross-small"></i>
+    </div>
+{% endfor %}
+{% for message in app.flashes('info') %}
+    <div class="notification info f ai-c jc-c">
+        <div class="f ai-c notification-message">
+            ☢️
+            <span>Attention ! </span>
+        </div>
+        {{ message }}
+        <i class="fi fi-rr-cross-small"></i>
+    </div>
+{% endfor %}
+
+
 <header class="f jc-c" id="header">
     <nav class="f ai-c jc-sb nav">
         <section class="nav-logo f ai-c">

@@ -6,7 +6,9 @@ body.light-mode {
   background-color: $theme-background;
   color: $theme-color;
 
-  nav {
+  .notification{
+    background-color: $theme-background;
+    color: $theme-color;
   }
 
   .nav {

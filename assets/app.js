@@ -75,14 +75,15 @@ document.addEventListener("DOMContentLoaded", function () {
     /*
     Toggle notifications
      */
-    const closeButton = document.querySelector(".close");
     const notification = document.querySelector(".notification");
 
     const isActive = false;
 
-    if(isActive){
-        closeButton.addEventListener("click", toggleNotifications)
-    }
+    //if(isActive){
+        console.log('ello')
+
+        notification.addEventListener("click", toggleNotifications)
+    //}
 
     function toggleNotifications() {
         notification.style.display = "none";
