@@ -82,3 +82,26 @@ category_show:
   controller: App\Controller\CategoryController::show
   requirements:
     id: '\d+'
+
+##############################################
+#Chengelog route
+##############################################
+changelog_index:
+  path: /changelog
+  controller: App\Controller\ChangelogController::index
+
+changelog_edit:
+  path: /changelog/edit/{id}
+  controller: App\Controller\ChangelogController::edit
+  requirements:
+    id: '\d+'
+
+changelog_add:
+  path: /changelog/add/
+  controller: App\Controller\ChangelogController::add
+
+changelog_remove:
+  path: /changelog/remove/{id}
+  controller: App\Controller\ChangelogController::remove
+  requirements:
+    id: '\d+'

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Changelog{% endblock %}
+
+{% block body %}
+    <section class="wrapper">
+        <div class="wrapper-resize wrapper-medium grid grid-gap-40">
+            <h1>Editer un Changelog</h1>
+
+            {{ include('changelog/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+            <div class="btn-box">
+                <a href="{{ path('changelog_index') }}" class="btn">Retour</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changelog index{% endblock %}
+
+{% block body %}
+    <section class="wrapper">
+        <div class="wrapper-resize wrapper-medium grid grid-gap-40">
+            <h1>Changelogs Xipel</h1>
+            <p class="text-center">
+                Retrouvez ici toute les mises à jour effectuées sur le site. Vous pouvez également retrouver la liste
+                des tâches en cours sur le
+                <a href="trello.fr" class="link-style">Trello Officiel</a>
+            </p>
+
+            {% for changelog in changelogs %}
+                <article class="grid grid-gap-10 wrapper-changelog">
+                    <h2>Mise à jour du : {{ changelog.createdAt ? changelog.createdAt|date('d-m-Y') : '' }}
+                        {% if(is_granted("ROLE_ADMIN")) %}
+                            <a href="{{ path('changelog_edit', {'id': changelog.id}) }}">✏️</a>
+                            <a href="{{ path('changelog_remove', {'id': changelog.id}) }}">🗑</a>
+                        {% endif %}
+                    </h2>
+                    <p>{{ changelog.content|raw }}</p>
+                </article>
+            {% endfor %}
+
+            <div class="btn-box">
+                {% if(is_granted("ROLE_ADMIN")) %}
+                    <a href="{{ path('changelog_add') }}"class="btn">Ajouter un changelog</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

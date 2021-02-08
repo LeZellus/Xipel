@@ -17,6 +17,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "node-sass": "4.14.1"
+        "node-sass": "4.14.1",
+        "tinymce": "^5.6.2"
     }
 }

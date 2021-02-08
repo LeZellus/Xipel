@@ -1,8 +1,13 @@
 .btn{
+  font-size: 1.6rem;
 
   &-box{
     height: 7.7rem;
     display: flex;
     align-items: center;
+
+    .btn{
+      margin-right: 1rem;
+    }
   }
 }

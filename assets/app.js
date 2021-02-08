@@ -10,22 +10,24 @@ import './styles/app.scss';
 
 // any JS you import will output into a single css file (app.js in this case)
 import './scripts/app.js';
+import tinymce from "tinymce";
+
 
 //DOM loaded
 document.addEventListener("DOMContentLoaded", function () {
 
-    /*
+    /**************************************************
     Light-Theme function
-     */
+     **************************************************/
     const btn = document.querySelector(".btn-toggle");
 
     btn.addEventListener("click", togglePageContentLightDark);
 
     function togglePageContentLightDark() {
-        let newClass = document.body.className == 'dark-mode' ? 'light-mode' : 'dark-mode'
+        let newClass = document.body.className === 'dark-mode' ? 'light-mode' : 'dark-mode'
         document.body.className = newClass
 
-        document.cookie = 'theme=' + (newClass == 'light-mode' ? 'light' : 'dark')
+        document.cookie = 'theme=' + (newClass === 'light-mode' ? 'light' : 'dark')
         console.log('Cookies are now: ' + document.cookie)
     }
 
@@ -41,9 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setThemeFromCookie()
     })();
 
-    /*
+    /**************************************************
     Toggle menu function
-     */
+     **************************************************/
     const menuBtn = document.querySelector(".nav-logo");
     const navMenu = document.querySelector(".nav-menu");
 
@@ -60,10 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    /*
-    Toggle menu function
-     */
+    /**************************************************
+    Toggle menu function (Useless ?)
+     **************************************************/
     const header = document.getElementById('header');
+
     window.onscroll = function () {
         if (window.scrollY >= 10) {
             header.classList.add("nav-colored");
@@ -72,17 +75,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    /*
+    /**************************************************
+    WYSIWYG Management
+     **************************************************/
+    tinymce.init({
+        selector: '#editorjs',
+        menubar: false,
+
+        //Define theme (working progress)
+        skin: (window.matchMedia("(prefers-color-scheme: dark)").matches ? "oxide-dark" : ""),
+        content_css: (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "")
+    });
+
+    /**************************************************
     Toggle notifications
-     */
+     **************************************************/
     const notification = document.querySelector(".notification");
 
     const isActive = false;
 
     //if(isActive){
-        console.log('ello')
 
-        notification.addEventListener("click", toggleNotifications)
+    notification.addEventListener("click", toggleNotifications)
     //}
 
     function toggleNotifications() {

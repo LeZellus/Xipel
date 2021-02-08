@@ -1,0 +1,11 @@
+{{ form_start(form, {'attr': {'class': 'form grid grid-gap-20'}}) }}
+<div class="form-group">
+    {{ form_label(form.content, "Contenu", {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.content, {'id': 'editorjs'}, {'attr': {'placeholder': 'Contenu'}}) }}
+    {{ form_errors(form.content) }}
+</div>
+
+<div class="btn-box">
+    <input type="submit" class="btn" value="Créer">
+</div>
+{{ form_end(form) }}

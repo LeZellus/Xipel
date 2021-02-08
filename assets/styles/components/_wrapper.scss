@@ -1,7 +1,7 @@
-.wrapper{
+.wrapper {
   width: 100%;
 
-  &-resize{
+  &-resize {
     margin: auto;
     max-width: 128rem;
     width: 100%;
@@ -9,15 +9,26 @@
     box-sizing: border-box;
   }
 
-  &-logout{
-    a{
+  &-logout {
+    a {
       font-weight: 800;
       text-decoration: underline;
     }
   }
 
-  &-small{
+  &-small {
     max-width: 52rem;
+  }
 
+  &-medium {
+    max-width: 70rem;
+  }
+
+  &-changelog{
+    h2{
+      padding-bottom: 1rem;
+      border-bottom: 1px solid;
+      border-color: $palette-mine-shaft;
+    }
   }
 }
