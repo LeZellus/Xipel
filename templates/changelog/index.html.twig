@@ -9,7 +9,7 @@
             <p class="text-center">
                 Retrouvez ici toute les mises à jour effectuées sur le site. Vous pouvez également retrouver la liste
                 des tâches en cours sur le
-                <a href="trello.fr" class="link-style">Trello Officiel</a>
+                <a href="https://trello.com/b/JqbcWd5S/xipel" class="link-style">Trello Officiel</a>
             </p>
 
             {% for changelog in changelogs %}
@@ -26,7 +26,7 @@
 
             <div class="btn-box">
                 {% if(is_granted("ROLE_ADMIN")) %}
-                    <a href="{{ path('changelog_add') }}"class="btn">Ajouter un changelog</a>
+                    <a href="{{ path('changelog_add') }}" class="btn">Ajouter un changelog</a>
                 {% endif %}
             </div>
         </div>
