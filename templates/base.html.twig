@@ -13,7 +13,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('fonts/uicons-regular-rounded/css/uicons-regular-rounded.css') }}">
-        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     {% endblock %}
 </head>
@@ -64,6 +63,9 @@
                 </li>
                 <li>
                     <a href="#" class="btn-toggle f ai-c">🌓 Dark / Light</a>
+                </li>
+                <li>
+                    <a href="{{ path('changelog_index') }}" class="f ai-c">📌 Changelogs</a>
                 </li>
                 <li>
                     <a href="{{ path('app_contact') }}" class="f ai-c">💬 Contact</a>
