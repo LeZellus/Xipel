@@ -19,7 +19,10 @@ class ChangelogController extends AbstractController
     public function index(ChangelogRepository $changelogRepository): Response
     {
         return $this->render('changelog/index.html.twig', [
-            'changelogs' => $changelogRepository->findAll(),
+            'changelogs' => $changelogRepository->findBy(
+                [],
+                ['createdAt' => 'DESC'],
+            ),
         ]);
     }
 
